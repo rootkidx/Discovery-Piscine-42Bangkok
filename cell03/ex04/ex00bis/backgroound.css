@@ -1,0 +1,8 @@
+body {
+    background-color: #ffff;
+    /* set initial background color */
+}
+
+button {
+    cursor: pointer;
+}

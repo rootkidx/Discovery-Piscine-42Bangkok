@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .balloon {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="balloon"></div>
+    
+    
+    <script src="https://code.jquery.com/jquery-3.6.3.js"
+        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
+    <script>
+        var $balloon = $('.balloon');
+        var balloonSize = 200;
+        var balloonColor = 0;
+        var balloonColors = ["red", "green", "blue"];
+
+        $balloon.on('click', function () {
+            if (balloonSize < 420) {
+                balloonSize += 10;
+                balloonColor = (balloonColor + 1) % balloonColors.length;
+                $balloon.css({
+                    'background-color': balloonColors[balloonColor],
+                    'width': balloonSize + 'px',
+                    'height': balloonSize + 'px'
+                });
+            } else {
+                // $balloon.addClass('explode');
+                setTimeout(function () {
+                    // $balloon.removeClass('explode');
+                    balloonSize = 200;
+                    balloonColor = 0;
+                    $balloon.css({
+                        'background-color': balloonColors[balloonColor],
+                        'width': balloonSize + 'px',
+                        'height': balloonSize + 'px'
+                    });
+                }, 500);
+            }
+        });
+
+        $balloon.on('mouseleave', function () {
+            if (balloonSize > 200) {
+                balloonSize -= 5;
+                balloonColor = (balloonColor - 1 + balloonColors.length) % balloonColors.length;
+                $balloon.css({
+                    'background-color': balloonColors[balloonColor],
+                    'width': balloonSize + 'px',
+                    'height': balloonSize + 'px'
+                });
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>
